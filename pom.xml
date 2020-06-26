@@ -12,6 +12,10 @@
         <module>myspringcloud-api</module>
         <module>myspringcloud-provider-product</module>
         <module>myspringcloud-consumer</module>
+        <module>myspringcloud-security</module>
+        <module>myspringcloud-eureka</module>
+        <module>myspringcloud-eureka2</module>
+        <module>myspringcloud-eureka3</module>
     </modules>
 
     <properties>
@@ -51,17 +55,41 @@
             </dependency>
 
             <dependency>
-                <groupId>com.en.iot</groupId>
+                <groupId>com.en</groupId>
                 <artifactId>myspringcloud-api</artifactId>
                 <version>1.0.0</version>
             </dependency>
+
+            <dependency>
+                <groupId>com.en</groupId>
+                <artifactId>myspringcloud-security</artifactId>
+                <version>1.0.0</version>
+            </dependency>
+
 
         </dependencies>
     </dependencyManagement>
 
     <build>
         <finalName>myspringcloud</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <delimiters>
+                        <delimiter>$</delimiter>
+                    </delimiters>
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
