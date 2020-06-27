@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.en.mapper.ProductMapper">
+    <select id="getInfoById" resultType="com.en.po.ProductPo" parameterType="long">
+        select
+            productId,
+            productName,
+            productDesc
+        from
+            product
+        WHERE productId = #{id};
+    </select>
+
+    <select id="getAllInfo" resultType="com.en.po.ProductPo">
+        SELECT
+            productId,
+            productName,
+            productDesc
+        from
+            product;
+    </select>
+
+    <insert id="addInfo" parameterType="com.en.po.ProductPo">
+        INSERT INTO
+            product(
+              productName,
+              productDesc
+            )
+        VALUES
+            (
+              #{productName},
+              database()
+            );
+    </insert>
+
+</mapper>
