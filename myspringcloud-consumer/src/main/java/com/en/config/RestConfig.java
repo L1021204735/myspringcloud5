@@ -1,5 +1,7 @@
 package com.en.config;
 
+import com.netflix.loadbalancer.IRule;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -10,10 +12,13 @@ import java.util.Base64;
 
 @Configuration
 public class RestConfig {
+
     @Bean
+    @LoadBalanced
     public RestTemplate restTemplate() {
         return  new RestTemplate();
     }
+
     @Bean
     public HttpHeaders getHeaders() {
         HttpHeaders headers = new HttpHeaders();
@@ -23,6 +28,11 @@ public class RestConfig {
         String authHeader = "Basic " + new String(encodedAuth);
         headers.set("Authorization", authHeader);
         return headers;
+    }
+
+    @Bean
+    public IRule ribbonRule() {
+        return new com.netflix.loadbalancer.RandomRule();
     }
 
 }

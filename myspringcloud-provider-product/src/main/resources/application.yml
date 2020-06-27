@@ -20,7 +20,7 @@ eureka:
     service-url:
       defaultZone: http://admin:root@eureka:7001/eureka,http://admin:root@eureka2:7002/eureka,http://admin:root@eureka3:7003/eureka
   instance:
-    instance-id: microcloud-provider-product
+    instance-id: myspringcloud-provider-product
     prefer-ip-address: true
     lease-renewal-interval-in-seconds: 2 # 设置心跳的时间间隔（默认是30秒）
     lease-expiration-duration-in-seconds: 5  # 如果现在超过了5秒的间隔（默认是90秒）

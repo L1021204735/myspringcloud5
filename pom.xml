@@ -11,11 +11,15 @@
     <modules>
         <module>myspringcloud-api</module>
         <module>myspringcloud-provider-product</module>
+        <module>myspringcloud-provider-product2</module>
+        <module>myspringcloud-provider-product3</module>
         <module>myspringcloud-consumer</module>
+        <module>myspringcloud-consumer-feign</module>
         <module>myspringcloud-security</module>
         <module>myspringcloud-eureka</module>
         <module>myspringcloud-eureka2</module>
         <module>myspringcloud-eureka3</module>
+        <module>myspringcloud-service</module>
     </modules>
 
     <properties>

@@ -1,6 +1,8 @@
 package com.en.controller;
 
 import com.en.po.ProductPo;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -20,13 +22,18 @@ import java.util.List;
 @RequestMapping("/consumer")
 public class ConsumerProductController {
 
-    private static final String PRODUCT_GET_URL = "http://localhost:8081/prodcut/getInfoById/";
-    private static final String PRODUCT_LIST_URL="http://localhost:8081/prodcut/getAllInfo/";
-    private static final String PRODUCT_ADD_URL = "http://localhost:8081/prodcut/addInfo/";
+    private static final String PRODUCT_GET_URL = "http://MYSPRINGCLOUD-PROVIDER-PRODUCT/prodcut/getInfoById/";
+    private static final String PRODUCT_LIST_URL="http://MYSPRINGCLOUD-PROVIDER-PRODUCT/prodcut/getAllInfo/";
+    private static final String PRODUCT_ADD_URL = "http://MYSPRINGCLOUD-PROVIDER-PRODUCT/prodcut/addInfo/";
+
     @Resource
     private RestTemplate restTemplate;
     @Resource
     private HttpHeaders httpHeaders;
+
+    @Resource
+    private LoadBalancerClient loadBalancerClient;
+
 
     @RequestMapping("/product/getInfoById")
     public Object getProduct(long id) {
@@ -36,7 +43,11 @@ public class ConsumerProductController {
 
     @RequestMapping("/product/getAllInfo")
     public  Object listProduct() {
-
+        ServiceInstance serviceInstance = this.loadBalancerClient.choose("MYSPRINGCLOUD-PROVIDER-PRODUCT") ;
+        System.out.println(
+                "【*** ServiceInstance ***】host = " + serviceInstance.getHost()
+                        + "、port = " + serviceInstance.getPort()
+                        + "、serviceId = " + serviceInstance.getServiceId());
         return restTemplate.exchange(PRODUCT_LIST_URL,HttpMethod.GET,new HttpEntity<>(httpHeaders), List.class).getBody();
     }
 
