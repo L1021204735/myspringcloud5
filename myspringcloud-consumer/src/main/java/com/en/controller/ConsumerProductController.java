@@ -22,9 +22,9 @@ import java.util.List;
 @RequestMapping("/consumer")
 public class ConsumerProductController {
 
-    private static final String PRODUCT_GET_URL = "http://MYSPRINGCLOUD-PROVIDER-PRODUCT/prodcut/getInfoById/";
-    private static final String PRODUCT_LIST_URL="http://MYSPRINGCLOUD-PROVIDER-PRODUCT/prodcut/getAllInfo/";
-    private static final String PRODUCT_ADD_URL = "http://MYSPRINGCLOUD-PROVIDER-PRODUCT/prodcut/addInfo/";
+    private static final String PRODUCT_GET_URL = "http://MYSPRINGCLOUD-PROVIDER-PRODUCT/product/getInfoById/";
+    private static final String PRODUCT_LIST_URL="http://MYSPRINGCLOUD-PROVIDER-PRODUCT/product/getAllInfo/";
+    private static final String PRODUCT_ADD_URL = "http://MYSPRINGCLOUD-PROVIDER-PRODUCT/product/addInfo/";
 
     @Resource
     private RestTemplate restTemplate;
